@@ -1,16 +1,13 @@
 import streamlit as st
-import joblib
 import numpy as np
+import joblib
+import tensorflow as tf
+from tensorflow.keras.models import load_model
 
-# 1. Load the model
-model = joblib.load('model.pkl')
-
-st.title("ML Prediction App")
-
-# 2. Get user input
-val = st.number_input("Enter Input Value", value=0.0)
-
-# 3. Predict
-if st.button("Predict"):
-    prediction = model.predict([[val]])
-    st.success(f"The result is: {prediction[0]}")
+# 1. Load the model safely
+try:
+    # Try loading as a Keras model first
+    model = load_model('model.pkl')
+except:
+    # Fallback to joblib if it's a standard sklearn model
+    model = joblib.load('model.pkl')
