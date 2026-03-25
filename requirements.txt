@@ -1,7 +1,7 @@
-pandas 
+streamlit
+pandas
 numpy
-sklearn
-tensorflow.keras
+scikit-learn
+tensorflow
 matplotlib
 joblib
-google.colab.files
